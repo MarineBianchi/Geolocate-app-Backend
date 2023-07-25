@@ -4,7 +4,7 @@ var router = express.Router();
 require('../models/connection');
 const Place = require('../models/places');
 
-// Créer et enregistrer des nouveuax marques/endroits
+// Créer et enregistrer des nouveaux marqueurs/endroits
 router.post('/places', (req, res) => {
 
   const newPlace = new Place({
@@ -29,21 +29,19 @@ router.get('/places/:nickname', (req, res) => {
     });
   });
 
-// Supprimer les endroits enregistrés chez un utilisateur
+// Supprimer les endroits enregistrés par un utilisateur
   router.delete("/places", (req, res) => {
     Place.deleteOne({ nickname: req.body.nickname, name: req.body.name })
     .then(data => {
         console.log(data)
         if (data.deletedCount >=1) {
 
-            res.json({ result: true, message: 'User deleted'});
+            res.json({ result: true, message: 'deleted'});
       
         } else {
 
-            res.json({ result: false, message: "Wissem est mon hero" });
+            res.json({ result: false, message: "not deleted" });
         }
-
-    
     });
   });
 
